@@ -1,18 +1,14 @@
 import numpy as np
 import pandas as pd
+import statsmodels.tsa.stattools as ts
+pd.options.mode.chained_assignment = None 
 from AAF import getMyPosition as getPosition
-
-# Algorithm testing file. 
-# Quantitative judging will be determined from output of this program.
-# Judging will use unseeen, future price data from the same universe.
 
 nInst = 0
 nt = 0
 
-# Commission rate.
 commRate = 0.0050
 
-# Dollar position limit (maximum absolute dollar value of any individual stock position).
 dlrPosLimit = 10000
 
 def loadPrices(fn):
@@ -21,7 +17,7 @@ def loadPrices(fn):
     nt, nInst = df.values.shape
     return (df.values).T
 
-pricesFile="./prices250.txt"
+pricesFile="./prices250.csv"
 prcAll = loadPrices(pricesFile)
 print ("Loaded %d instruments for %d days" % (nInst, nt))
 
